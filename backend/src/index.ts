@@ -13,13 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
     cors({
-        origin: APP_ORIGIN,
-        credentials: true,
-    })
-)
-app.use(
-    cors({
-        origin: FLASK_URL,
+        origin: [APP_ORIGIN, FLASK_URL],
         credentials: true,
     })
 )
