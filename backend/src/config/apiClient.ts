@@ -6,5 +6,4 @@ const options = {
     withCredentials: true
 }
 
-
 export const API = axios.create(options)

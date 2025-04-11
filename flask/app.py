@@ -8,6 +8,10 @@ final_path = os.path.abspath(target_path)
 print(CWD)
 
 @app.route("/")
+def helloeWorld():
+    return jsonify({"Res": 200})
+
+@app.route("/getNotes")
 def getNotesFromClassroom():
     import os.path
     import os

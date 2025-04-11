@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import AppContainer from './components/AppContainer';
 import InputNotes from './pages/InputNotes';
 
-
 function App() {
 
   return (

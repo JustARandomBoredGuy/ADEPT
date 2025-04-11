@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { APP_ORIGIN, NODE_ENV , PORT} from "./constants/env";
+import { APP_ORIGIN, FLASK_URL, NODE_ENV , PORT} from "./constants/env";
 import errorHandler from "./middleware/errorHandler";
 import { OK } from "./constants/http";
 import apiRoutes from "./routes/api.route";
@@ -14,6 +14,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
     cors({
         origin: APP_ORIGIN,
+        credentials: true,
+    })
+)
+app.use(
+    cors({
+        origin: FLASK_URL,
         credentials: true,
     })
 )

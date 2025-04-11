@@ -3,8 +3,10 @@ import { BAD_REQUEST, OK } from "../constants/http";
 import appAssert from "../utils/appAssert";
 import catchErrors from "../utils/catchErrors";
 import fs from "fs";
-import { RAW_DATA_PATH } from "../constants/env";
+import { FLASK_URL, RAW_DATA_PATH } from "../constants/env";
 import { API } from "../config/apiClient";
+import axios from "axios"
+import { ok } from "assert";
 
 
 type fileSchema = Express.Multer.File[]
@@ -24,6 +26,15 @@ export const pdfHandler = catchErrors(async (req, res) => {
 })
 
 
+export const connectionHandler = catchErrors(async (req, res) => {
+    const response = async () => API.get("/")
+    console.log(response);
+    return res.status(OK).json({ message: "Connection successful "})
+})  
+
 export const linkHandler = catchErrors(async (req, res) => {
-    async () => API.get("/")
+    const response = async () => API.get("/getNotes")
+    // const response = await axios.get('http://localhost:5000/getNotes');
+    console.log(response);
+    return res.status(OK).json({ message: "Files Received"})
 })
