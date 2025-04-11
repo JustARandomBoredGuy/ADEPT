@@ -3,14 +3,14 @@ import buttonTheme from "./buttonTheme";
 import linkTheme from "./linkTheme";
 
 const config = {
-  initialColorMode: "dark",
+  initialColorMode: "light",
   useSystemColorMode: false,
 };
 
-const colors = {
-  theme: {
-    primary: baseTheme.colors.blue[500],
-    primaryDark: baseTheme.colors.blue[600],
+const global = {
+  body: {
+    bg: 'white',
+    color: 'black',
   },
   text: {
     muted: baseTheme.colors.gray[400],
@@ -19,7 +19,9 @@ const colors = {
 
 const theme = extendTheme({
   config,
-  colors,
+  styles: {
+    global
+  },
   components: {
     Button: buttonTheme,
     Link: linkTheme,
