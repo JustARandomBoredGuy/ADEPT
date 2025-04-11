@@ -1,5 +1,5 @@
 import path from "path";
-import { BAD_REQUEST, INTERNAL_SERVER_ERROR, OK } from "../constants/http";
+import { BAD_REQUEST, INTERNAL_SERVER_ERROR, NOT_FOUND, OK } from "../constants/http";
 import appAssert from "../utils/appAssert";
 import catchErrors from "../utils/catchErrors";
 import fs from "fs";
@@ -18,31 +18,64 @@ export const pdfHandler = catchErrors(async (req, res) => {
     for (const file of files) {
         const filename = `${file.originalname}`;
         const filePath = path.join(RAW_DATA_PATH, filename);
-    
-        fs.writeFileSync(filePath, file.buffer);
-      }
 
-    return res.status(OK).json({ message: "File received successfully "})
+        fs.writeFileSync(filePath, file.buffer);
+    }
+
+    return res.status(OK).json({ message: "File received successfully " })
 })
 
+export const imgHandler = catchErrors(async (req, res) => {
+    const files = req.files as Express.Multer.File[]; // Adjust type based on your setup
+    appAssert(files && files.length > 0, BAD_REQUEST, "No image file sent");
+
+    const file = files[0];
+    const ext = path.extname(file.originalname).toLowerCase();
+
+    appAssert(ext === '.jpg' || ext === '.jpeg', BAD_REQUEST, "Only .jpg files are allowed");
+
+    const filePath = path.join(RAW_DATA_PATH, 'syllabus.jpg');
+    fs.writeFileSync(filePath, file.buffer);
+
+    return res.status(OK).json({ message: "Image saved as syllabus.jpg" });
+})
 
 export const connectionHandler = catchErrors(async (req, res) => {
     const response = async () => API.get("/")
     console.log(response);
-    return res.status(OK).json({ message: "Connection successful "})
-})  
+    return res.status(OK).json({ message: "Connection successful " })
+})
 
 export const linkHandler = catchErrors(async (req, res) => {
     const response = await API.get("/getNotes")
     appAssert(response, INTERNAL_SERVER_ERROR, "Flask Error")
     console.log(response.data);
-    return res.status(OK).json({ message: "Files Received", data: response.data})
+    return res.status(OK).json({ message: "Files Received", data: response.data })
 })
 
-export const delTokenHandler = catchErrors(async (req,res) => {
+export const delTokenHandler = catchErrors(async (req, res) => {
     const response = await API.get("/deleteToken")
     appAssert(response, INTERNAL_SERVER_ERROR, "Flask Error")
 
     console.log(response.data)
-    return res.status(OK).json({ message: "Token Deleted", data: response.data})
+    return res.status(OK).json({ message: "Token Deleted", data: response.data })
+})
+
+export const getTokenHandler = catchErrors(async (req, res) => {
+    const filePath = path.join(RAW_DATA_PATH, 'syllabus.jpg');
+
+    if (fs.existsSync(filePath)) {
+        return res.status(OK).json({ message: "Syllabus exists." });
+    } else {
+        return res.status(NOT_FOUND).json({ message: "Syllabus does not exist." });
+    }
+
+    // const response = await API.get("/getToken")
+    // appAssert(response, INTERNAL_SERVER_ERROR, "Flask Error")
+
+    // if (response.status !== 200) {
+    //     return res.status(BAD_REQUEST).json({ message: "Failed to get token" })
+    // }
+    // console.log(response.data)
+    // return res.status(OK).json(response.data)
 })

@@ -23,7 +23,7 @@ const UserMenu = () => {
 
     return (
         <Menu isLazy placement="right-start">
-            <MenuButton position='absolute' left="1.5rem" bottom='1.5rem'>
+            <MenuButton position='fixed' left="1.5rem" bottom='1.5rem' zIndex={10}>
                 <Avatar src='#' />
             </MenuButton>
             <MenuList>
