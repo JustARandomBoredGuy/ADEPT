@@ -337,16 +337,20 @@ Unit: <unit_number>
         return None, None, None
 
 # --- Main Execution ---
-if __name__ == "__main__":
+def main():
     # --- Configuration ---
     # IMPORTANT: Make sure this image file exists in the same directory
     # or provide the full path.
-    syllabus_image_path = "syllabus.jpg"
+    CWD = os.getcwd()
+    syllabus_image_path = os.path.join(CWD, "..", "backend", "src", "constants", "rawData")
+    syllabus_image_path = os.path.abspath(syllabus_image_path)
+    pdf_path = syllabus_image_path
+    syllabus_image_path = os.path.join(syllabus_image_path, "syllabus.jpg")
     SUBTOPIC_LIMIT_PER_UNIT = 5 # Define the maximum number of entries per unit
 
     # Extract text from PDFs in the current directory
     print("--- Step 0: Extracting text from PDF files ---")
-    info_list = extract_text_from_pdfs(directory='.')
+    info_list = extract_text_from_pdfs(directory=pdf_path)
     
     if not info_list:
         print("Warning: No text extracted from PDFs. Using fallback example content.")
@@ -361,6 +365,8 @@ if __name__ == "__main__":
     # Create the primary nested list structure: 5 empty lists for 5 units
     # Index 0 corresponds to Unit 1, Index 1 to Unit 2, and so on.
     final_nested_list = [[], [], [], [], []]
+
+    print(CWD, syllabus_image_path)
 
     # --- Syllabus Extraction ---
     print("--- Step 1: Extracting Syllabus from Image ---")
@@ -454,3 +460,23 @@ if __name__ == "__main__":
     for i, unit_content in enumerate(final_nested_list):
         print(f"Unit {i+1} contains {len(unit_content)} entries.")
     print("--------------------------")
+
+    result = {}
+
+    for outer_index, group in enumerate(final_nested_list):
+        result[outer_index] = {}
+        for inner_index, item in enumerate(group):
+            title, summary, links = item
+            result[outer_index][inner_index] = {
+                "title": title,
+                "summary": summary,
+                "links": {i: link for i, link in enumerate(links)}
+            }
+
+    print(result)
+
+    with open(os.path.join(CWD, "..", "backend", "src", "constants", "processedData", "finalData.json"), "w") as f:
+        json.dump(result, f, indent=4)
+
+
+main()
