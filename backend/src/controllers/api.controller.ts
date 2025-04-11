@@ -1,5 +1,5 @@
 import path from "path";
-import { BAD_REQUEST, OK } from "../constants/http";
+import { BAD_REQUEST, INTERNAL_SERVER_ERROR, OK } from "../constants/http";
 import appAssert from "../utils/appAssert";
 import catchErrors from "../utils/catchErrors";
 import fs from "fs";
@@ -34,7 +34,15 @@ export const connectionHandler = catchErrors(async (req, res) => {
 
 export const linkHandler = catchErrors(async (req, res) => {
     const response = await API.get("/getNotes")
-    // const response = await axios.get('http://localhost:5000/getNotes');
+    appAssert(response, INTERNAL_SERVER_ERROR, "Flask Error")
     console.log(response.data);
     return res.status(OK).json({ message: "Files Received", data: response.data})
+})
+
+export const delTokenHandler = catchErrors(async (req,res) => {
+    const response = await API.get("/deleteToken")
+    appAssert(response, INTERNAL_SERVER_ERROR, "Flask Error")
+
+    console.log(response.data)
+    return res.status(OK).json({ message: "Token Deleted", data: response.data})
 })

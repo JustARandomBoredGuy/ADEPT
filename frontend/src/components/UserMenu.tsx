@@ -1,6 +1,7 @@
 import { Avatar, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react"
 // import { useMutation } from "@tanstack/react-query"
 import { useNavigate } from "react-router-dom"
+import { removeToken } from "../lib/api"
 
 
 const UserMenu = () => {
@@ -28,6 +29,7 @@ const UserMenu = () => {
             <MenuList>
                 <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
                 <MenuItem onClick={() => navigate("/inputNotes")}>Add Notes</MenuItem>
+                <MenuItem onClick={() => removeToken() }>Remove Token</MenuItem>
             </MenuList>
         </Menu>
     )

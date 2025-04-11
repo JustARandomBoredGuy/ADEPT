@@ -8,8 +8,19 @@ final_path = os.path.abspath(target_path)
 print(CWD)
 
 @app.route("/")
-def helloeWorld():
+def helloWorld():
     return jsonify({"Res": 200})
+
+@app.route("/deleteToken")
+def deleteToken():
+    import os
+    try:
+        if os.path.exists("token.json"):
+            os.remove("token.json")
+        return jsonify({"statusCode": 200, 'body': "Successfully deleted token"})
+    except Exception as err:
+        print(err)
+        return jsonify({"statusCode":404, "body": "Error in deleting token"})
 
 @app.route("/getNotes")
 def getNotesFromClassroom():

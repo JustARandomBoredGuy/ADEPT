@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { connectionHandler, linkHandler, pdfHandler } from "../controllers/api.controller";
+import { connectionHandler, delTokenHandler, linkHandler, pdfHandler } from "../controllers/api.controller";
 import multer from "multer";
 
 
@@ -10,5 +10,6 @@ const apiRoutes = Router();
 apiRoutes.post("/parsePDF", upload.any(), pdfHandler);
 apiRoutes.post("/checkConnection", connectionHandler);
 apiRoutes.post("/parseLink", linkHandler);
+apiRoutes.post("/deleteToken", delTokenHandler);
 
 export default apiRoutes;
