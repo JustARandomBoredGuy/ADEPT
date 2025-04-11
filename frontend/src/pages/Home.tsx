@@ -11,9 +11,39 @@ const Home = () => {
                 <h2 className="sub-title">An intelligent personal tutor, that is designed to be every student’s personal academic GURU that will transform a student’s digital learning library into a unique systematic roadmap.</h2>
                 {/* <p>Adept is an AI agent that will transform a student’s digital learning library into a systematic roadmap which will be uniquely fabricated for each student</p> */}
                 <a href="/inputNotes" id="get-started-btn">Get Started Now</a>
-                <a id="about-us-btn">About Us</a>
+                {/* <a id="about-us-btn">About Us</a> */}
             </div>
             <img src="../../public/home-img.png" alt="Man Holding computer" />
+        </div>
+
+        <div className="about-us"> 
+          <div className="card">
+            <img src="../../public/vite.svg" alt="Photo of person" />
+            <h3>Abhyuday Sharma</h3>
+            <p>Lead Prompt Engineer</p>
+            <p className="card-content">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio minima obcaecati, beatae quo maiores quisquam nesciunt"</p>
+          </div>
+
+          <div className="card">
+            <img src="../../public/vite.svg" alt="Photo of person" />
+            <h3>Akshat Arya</h3>
+            <p>Lead Backend Engineer</p>
+            <p className="card-content">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio minima obcaecati, beatae quo maiores quisquam nesciunt"</p>
+          </div>
+
+          <div className="card">
+            <img src="../../public/vite.svg" alt="Photo of person" />
+            <h3>Akshat Gupta</h3>
+            <p>Lead Complexity Engineer</p>
+            <p className="card-content">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio minima obcaecati, beatae quo maiores quisquam nesciunt"</p>
+          </div>
+
+          <div className="card">
+            <img src="../../public/vite.svg" alt="Photo of person" />
+            <h3>Amol Vyas</h3>
+            <p>Lead Python Engineer</p>
+            <p className="card-content">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio minima obcaecati, beatae quo maiores quisquam nesciunt"</p>
+          </div>
         </div>
     </div>
   );
