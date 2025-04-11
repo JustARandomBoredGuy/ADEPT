@@ -2,6 +2,8 @@
 .env
 .venv
 dist
+__pycache__
+token.json
 
 # Logs
 logs

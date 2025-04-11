@@ -1,6 +1,11 @@
 from flask import Flask, jsonify
+import os
 
 app = Flask(__name__)
+CWD = os.getcwd()
+target_path = os.path.join(CWD, "..", "backend", "src", "constants", "rawData")
+final_path = os.path.abspath(target_path)
+print(CWD)
 
 @app.route("/")
 def getNotesFromClassroom():
@@ -40,22 +45,27 @@ def getNotesFromClassroom():
                 # Save the credentials for the next run
                 with open("token.json", "w") as token:
                     token.write(creds.to_json())  
+            print("OAUTH DONE")
             return creds
         except Exception as err:
             return err
 
     def downloadFile(drive_service, fileName, fileId):
+
+        print("NOTES doenload begin")
         request = drive_service.files().get_media(fileId=fileId)
-        fh = io.FileIO('data/'+fileName, 'wb')
+        print("../")
+        fh = io.FileIO(os.path.join(final_path,fileName), 'wb')
         downloader = MediaIoBaseDownload(fh, request)
 
         done = False
         while done is False:
                 status, done = downloader.next_chunk()
                 print(f"  🔽 Downloaded {int(status.progress() * 100)}%")
+        print("NOTES doenload done")
 
     def isPresent(fileName):
-        for file in os.listdir('./data'):
+        for file in os.listdir(final_path):
             if file == fileName:
                 return True
         return False
@@ -73,6 +83,7 @@ def getNotesFromClassroom():
             results = service.courses().list().execute()
             courses = results.get("courses", [])
 
+            print("GOt the COurses")
             if not courses:
                 print("No courses found.")
                 return
@@ -82,15 +93,19 @@ def getNotesFromClassroom():
                     print(course["name"])
                     announcements = service.courses().announcements().list(courseId=course_id).execute()
                     items = announcements.get('announcements', [])
+                    print("Got the anncouncements")
                     for item in items:
                         for material in item.get("materials", []):
                             if "driveFile" in material:
+                                    
+                                    print("Got the files")
                                     fileInfo = material["driveFile"]["driveFile"]
                                     fileId = fileInfo["id"]
                                     fileName = fileInfo["title"]
 
                                     if not isPresent(fileName):
                                         downloadFile(drive_service, fileName, fileId)
+                                        print("File Downloaded")
                                     else:
                                         print(f'{fileName} skipped as it is already installed!')
         except HttpError as error:
@@ -99,5 +114,6 @@ def getNotesFromClassroom():
     try:
         main()
         return jsonify({"statusCode": 200, 'body': "Successfully installed notes"})
-    except:
+    except Exception as err:
+        print(err)
         return jsonify({"statusCode":404, "body": "Error in installing notes"})
