@@ -33,8 +33,8 @@ export const connectionHandler = catchErrors(async (req, res) => {
 })  
 
 export const linkHandler = catchErrors(async (req, res) => {
-    const response = async () => API.get("/getNotes")
+    const response = await API.get("/getNotes")
     // const response = await axios.get('http://localhost:5000/getNotes');
-    console.log(response);
-    return res.status(OK).json({ message: "Files Received"})
+    console.log(response.data);
+    return res.status(OK).json({ message: "Files Received", data: response.data})
 })

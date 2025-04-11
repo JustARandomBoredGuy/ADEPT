@@ -1,7 +1,7 @@
 import { Box, Button, Container, Flex, FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { sendPDF } from "../lib/api";
+import { sendLink, sendPDF } from "../lib/api";
 
 
 const InputNotes = () => {
@@ -10,11 +10,19 @@ const InputNotes = () => {
 
     const {
         mutate: uploadPDF,
-        isPending,
-        isError,
-        error
+        isPending: isUploadingPDF,
+        isError: isPDFError,
+        error: pdfError
     } = useMutation({
         mutationFn: sendPDF
+    })
+    const {
+        mutate: uploadLink,
+        isPending: isUploadingLink,
+        isError: isLinkError,
+        error: linkError
+    } = useMutation({
+        mutationFn: sendLink
     })
 
     return (
@@ -22,9 +30,16 @@ const InputNotes = () => {
             <Container mx="auto" maxW="md" py={12} px={6} textAlign="center">
                 <Box rounded='lg' bg='gray.700' boxShadow='lg' p={8}>
                     {
-                        isError && (<Box mb={3} color='red.400'>
+                        isPDFError && (<Box mb={3} color='red.400'>
                             {
-                                error?.message || "An error occured"
+                                pdfError?.message || "An error occured"
+                            }
+                        </Box>
+                        )}
+                    {
+                        isLinkError && (<Box mb={3} color='red.400'>
+                            {
+                                linkError?.message || "An error occured"
                             }
                         </Box>
                         )}
@@ -44,11 +59,17 @@ const InputNotes = () => {
                             />
                         </FormControl>
                         <Button my={2} isDisabled={!formData}
-                            isLoading={isPending}
+                            isLoading={isUploadingPDF}
                             onClick={
                                 () => uploadPDF(formData)
                             }
                         >Upload PDF</Button>
+                        <Button my={2} isDisabled={!formData}
+                            isLoading={isUploadingLink}
+                            onClick={
+                                () => uploadLink()
+                            }
+                        >Use Google Classroom</Button>
                     </Stack>
                 </Box>
             </Container>
