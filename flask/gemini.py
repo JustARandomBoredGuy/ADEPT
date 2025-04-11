@@ -477,6 +477,3 @@ def main():
 
     with open(os.path.join(CWD, "..", "backend", "src", "constants", "processedData", "finalData.json"), "w") as f:
         json.dump(result, f, indent=4)
-
-
-main()

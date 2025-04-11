@@ -133,3 +133,61 @@ def getNotesFromClassroom():
     except Exception as err:
         print(err)
         return jsonify({"statusCode":404, "body": "Error in installing notes"})
+
+@app.route("/getRoadmap")
+def getRoadmap():
+    import time
+    import os
+    from PyPDF2 import PdfReader
+    import fitz  # PyMuPDF
+    import re
+    from PIL import Image
+    import google.generativeai as genai
+    import json # For pretty printing the final list
+    import googleapiclient.discovery # For YouTube API integration
+
+    # --- Replace this with your actual API keys ---
+    # Important: In a real application, use environment variables or a secure method
+    # DO NOT HARDCODE YOUR API KEYS directly in the script.
+    # Example using environment variable:
+    # import os
+    # GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+    # YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY")
+    GEMINI_API_KEY = "AIzaSyCKGMJmX-EZF_zCdUHPMzCxbYLnxjwo4YQ" # Replace with your actual Gemini key
+    YOUTUBE_API_KEY = "AIzaSyCExMEEyxR1-XsZD7gskeaJoWUapVxYHno" # Replace with your actual YouTube API key
+
+    if GEMINI_API_KEY == "YOUR_GEMINI_API_KEY":
+        print("Error: Please replace 'YOUR_GEMINI_API_KEY' with your actual Google AI API key.")
+        exit()
+
+    if YOUTUBE_API_KEY == "YOUR_YOUTUBE_API_KEY":
+        print("Error: Please replace 'YOUR_YOUTUBE_API_KEY' with your actual YouTube API key.")
+        exit()
+
+    # Configure Gemini API
+    genai.configure(api_key=GEMINI_API_KEY)
+
+    # --- Gemini model configuration ---
+    # Updated system instruction to remove YouTube links request
+    model = genai.GenerativeModel(
+        model_name="gemini-1.5-flash",
+        system_instruction=(
+            "You are an expert at analyzing study material and syllabus.\n"
+            "Given a piece of study content and a syllabus context:\n"
+            "1. Generate a suitable subtopic name for this content (a short, descriptive title).\n"
+            "2. Generate a concise summary of the study content provided.\n"
+            "3. Identify the single most relevant unit number (an integer from 1 to 5) from the syllabus context for this specific content.\n"
+            "Respond ONLY in the following strict format, with each field on a new line:\n"
+            "SubtopicName: <short descriptive title>\n"
+            "Summary: <your concise summary here>\n"
+            "Unit: <unit number 1-5>"
+        )
+    )
+
+    from gemini import main, extract_text_from_pdfs, chunk_text, search_youtube_videos, extract_syllabus_from_image, analyze_study_material
+
+    try:
+        main()
+        return jsonify({"statusCode":200, "body": "Successfully Extracted"})
+    except:
+        return jsonify({"statusCode": 404, "body":"Error in getting roadmap"})
