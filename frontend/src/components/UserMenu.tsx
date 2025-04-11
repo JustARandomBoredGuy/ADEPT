@@ -1,0 +1,36 @@
+import { Avatar, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react"
+// import { useMutation } from "@tanstack/react-query"
+import { useNavigate } from "react-router-dom"
+
+
+const UserMenu = () => {
+    const navigate = useNavigate()
+    // const {
+    //     mutate: logoutUser,
+    //     error
+    // } = useMutation({
+    //     mutationFn: logout,
+    //     onError: () => {
+    //         alert(error?.message || "An error occurred")
+    //     },
+    //     onSettled: () => {
+    //         queryClient.clear()
+    //         alert("Logout successful")
+    //         navigate("/login")
+    //     }
+    // })
+
+    return (
+        <Menu isLazy placement="right-start">
+            <MenuButton position='absolute' left="1.5rem" bottom='1.5rem'>
+                <Avatar src='#' />
+            </MenuButton>
+            <MenuList>
+                <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
+                <MenuItem onClick={() => navigate("/inputNotes")}>Add Notes</MenuItem>
+            </MenuList>
+        </Menu>
+    )
+}
+
+export default UserMenu
