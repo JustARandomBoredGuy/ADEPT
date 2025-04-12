@@ -21,8 +21,12 @@ export const pdfHandler = catchErrors(async (req, res) => {
 
         fs.writeFileSync(filePath, file.buffer);
     }
+    console.log("Files saved successfully")
 
-    return res.status(OK).json({ message: "File received successfully " })
+    const response = await API.get("/getRoadmap")
+    appAssert(response, INTERNAL_SERVER_ERROR, "Parsing PDF failed")
+    alert("Parsing successful")
+    return res.status(OK).json({ message: "File parsed successfully " })
 })
 
 export const imgHandler = catchErrors(async (req, res) => {
@@ -50,7 +54,14 @@ export const linkHandler = catchErrors(async (req, res) => {
     const response = await API.get("/getNotes")
     appAssert(response, INTERNAL_SERVER_ERROR, "Flask Error")
     console.log(response.data);
-    return res.status(OK).json({ message: "Files Received", data: response.data })
+
+    console.log("Files saved successfully")
+
+    const parseResponse = await API.get("/getRoadmap")
+    appAssert(parseResponse, INTERNAL_SERVER_ERROR, "Parsing PDF failed")
+    
+    alert("Parsing successful")
+    return res.status(OK).json({ message: "File parsed successfully " })
 })
 
 export const delTokenHandler = catchErrors(async (req, res) => {
