@@ -3,10 +3,8 @@ import { BAD_REQUEST, INTERNAL_SERVER_ERROR, NOT_FOUND, OK } from "../constants/
 import appAssert from "../utils/appAssert";
 import catchErrors from "../utils/catchErrors";
 import fs from "fs";
-import { FLASK_URL, RAW_DATA_PATH } from "../constants/env";
+import { RAW_DATA_PATH } from "../constants/env";
 import { API } from "../config/apiClient";
-import axios from "axios"
-import { ok } from "assert";
 
 
 type fileSchema = Express.Multer.File[]
