@@ -114,9 +114,9 @@ img {
 
 .card img {
   border-radius: 50%;
-  width: 100%;
-  min-width: 15rem;
-  margin: 0;
+  width: 10rem;
+  height: 100%;
+  margin: auto;
   height: 10rem;
   margin-bottom: 2rem;
 }

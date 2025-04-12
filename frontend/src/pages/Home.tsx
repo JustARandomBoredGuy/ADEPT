@@ -18,31 +18,31 @@ const Home = () => {
 
         <div className="about-us"> 
           <div className="card">
-            <img src="../../public/vite.svg" alt="Photo of person" />
+            <img src="../../public/abhyuday.jpg" alt="Photo of person" />
             <h3>Abhyuday Sharma</h3>
-            <p>Lead Prompt Engineer</p>
-            <p className="card-content">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio minima obcaecati, beatae quo maiores quisquam nesciunt"</p>
+            <p>Prompt/AI Engineer</p>
+            <p className="card-content">"Innovation lies in the idea, AI can do the rest"</p>
           </div>
 
           <div className="card">
-            <img src="../../public/vite.svg" alt="Photo of person" />
+            <img src="../../public/arya.jpg" alt="Photo of person" />
             <h3>Akshat Arya</h3>
-            <p>Lead Backend Engineer</p>
-            <p className="card-content">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio minima obcaecati, beatae quo maiores quisquam nesciunt"</p>
-          </div>
-
-          <div className="card">
-            <img src="../../public/vite.svg" alt="Photo of person" />
-            <h3>Akshat Gupta</h3>
-            <p>Lead Complexity Engineer</p>
-            <p className="card-content">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio minima obcaecati, beatae quo maiores quisquam nesciunt"</p>
-          </div>
-
-          <div className="card">
-            <img src="../../public/vite.svg" alt="Photo of person" />
-            <h3>Amol Vyas</h3>
             <p>Lead Python Engineer</p>
-            <p className="card-content">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio minima obcaecati, beatae quo maiores quisquam nesciunt"</p>
+            <p className="card-content">"Success @ failure"</p>
+          </div>
+
+          <div className="card">
+            <img src="../../public/gupta.jpg" alt="Photo of person" />
+            <h3>Akshat Gupta</h3>
+            <p>Lead Backend Engineer</p>
+            <p className="card-content">"I am late again"</p>
+          </div>
+
+          <div className="card">
+            <img src="../../public/amol.jpg" alt="Photo of person" />
+            <h3>Amol Vyas</h3>
+            <p>Front End Engineer</p>
+            <p className="card-content">"Patience is the key to success"</p>
           </div>
         </div>
     </div>
