@@ -8,22 +8,22 @@
   font-family: "Epilogue", "Rubik";
   width: 70%;
   margin: auto;
-  height: 80rem;
+  height: 80vh;
   display: flex;
   align-items: center;
-  margin-top: 10em;
+  margin-top: 10vh;
   box-sizing: border-box;
-  min-width: 80rem;
+  min-width: 80vh;
 }
 
 img {
-  height: 50%;
-  width: 40%;
+  height: 100%;
+  width: 100%;
   margin-left: 4rem;
 }
 
 .content {
-  width: 40%;
+  width: 100%;
 }
 
 .title {
@@ -85,7 +85,7 @@ img {
 
 .about-us {
   font-family: "Epilogue", "Rubik";
-  width: 80rem;
+  width: 80%;
   margin: auto;
   display: flex;
   align-items: center;
@@ -99,7 +99,7 @@ img {
 .card {
   border: 1px black solid;
   border-radius: 1em;
-  width: 40%;
+  width: 100%;
   margin: 2rem;
   min-height: 25rem;
   padding: 2em;
