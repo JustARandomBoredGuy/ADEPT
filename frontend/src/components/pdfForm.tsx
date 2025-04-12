@@ -56,7 +56,7 @@ const PdfForm = () => {
     const isUploading = isUploadingPDF || isUploadingLink;
 
     const pdfButtonIsDisabled = !isFileSelected || isUploading;
-    // const linkButtonIsDisabled = !isFileSelected || isUploading; // Based on original logic
+    const linkButtonIsDisabled = !isFileSelected || isUploading; // Based on original logic
 
     const showPdfError = isPDFError;
     const pdfErrorMessage = pdfError?.message || "An error occurred uploading the PDF.";
@@ -110,6 +110,7 @@ const PdfForm = () => {
                     <button
                         className="gc-btn"
                         type="button"
+                        disabled={linkButtonIsDisabled}
                         onClick={handleUploadLinkClick}
  // Approximates my={2}
                     >
