@@ -1,7 +1,7 @@
 import React, { useRef, useState, ChangeEvent, MouseEventHandler } from "react"; // React imports are still needed
 import { sendLink, sendPDF } from "../lib/api";
 import { useMutation } from "@tanstack/react-query";
-import './pdfForm.css'
+import '../styles/pdfForm.css'
 
 // Define an interface for potential API error structure if known
 interface ApiError {

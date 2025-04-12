@@ -1,5 +1,5 @@
 // import { Center, Heading, Text } from "@chakra-ui/react";
-import "./Home.css"
+import "../styles/Home.css"
 
 const Home = () => {
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './UserMenu.css'; // Import the CSS file for styling
+import '../styles/UserMenu.css'; 
 import { removeToken } from '../lib/api';
 
 const UserMenu = () => {

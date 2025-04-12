@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Roadmap.css';
+import '../styles/Roadmap.css';
 import roadmap from "../../../backend/src/constants/processedData/finalData.json";
 
 const Roadmap = () => {
