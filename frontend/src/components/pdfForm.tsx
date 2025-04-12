@@ -1,77 +1,125 @@
-import { Box, Button, FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
-import { useRef, useState } from "react";
+import React, { useRef, useState, ChangeEvent, MouseEventHandler } from "react"; // React imports are still needed
 import { sendLink, sendPDF } from "../lib/api";
 import { useMutation } from "@tanstack/react-query";
+import './pdfForm.css'
 
+// Define an interface for potential API error structure if known
+interface ApiError {
+    message?: string;
+    // Add other potential error fields if applicable
+}
 
 const PdfForm = () => {
+    // --- Refs and State ---
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const [formData, setFormData] = useState<FormData>(new FormData());
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+    // --- Mutations ---
     const {
-        mutate: uploadPDF,
+        mutate: uploadPDFMutate,
         isPending: isUploadingPDF,
         isError: isPDFError,
         error: pdfError
-    } = useMutation({
+    } = useMutation<unknown, ApiError, FormData>({
         mutationFn: sendPDF
-    })
+    });
+
     const {
-        mutate: uploadLink,
+        mutate: uploadLinkMutate,
         isPending: isUploadingLink,
         isError: isLinkError,
         error: linkError
-    } = useMutation({
+    } = useMutation<unknown, ApiError, void>({
         mutationFn: sendLink
-    })
+    });
 
+    // --- Event Handlers ---
+    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        setSelectedFile(file || null);
+    };
+
+    const handleUploadPDFClick: MouseEventHandler<HTMLButtonElement> = () => {
+        if (selectedFile) {
+            const formData = new FormData();
+            formData.append("file", selectedFile);
+            uploadPDFMutate(formData);
+        }
+    };
+
+    const handleUploadLinkClick: MouseEventHandler<HTMLButtonElement> = () => {
+        uploadLinkMutate();
+    };
+
+    // --- Derived State for Rendering ---
+    const isFileSelected = !!selectedFile;
+    const isUploading = isUploadingPDF || isUploadingLink;
+
+    const pdfButtonIsDisabled = !isFileSelected || isUploading;
+    const linkButtonIsDisabled = !isFileSelected || isUploading; // Based on original logic
+
+    const showPdfError = isPDFError;
+    const pdfErrorMessage = pdfError?.message || "An error occurred uploading the PDF.";
+
+    const showLinkError = isLinkError;
+    const linkErrorMessage = linkError?.message || "An error occurred with the link operation.";
+
+    // --- Render Logic (Native HTML Only) ---
+    // Basic styles are applied inline for demonstration.
+    // For real applications, prefer CSS classes and stylesheets.
     return (
-        <>
-            <Box rounded='lg' bg='gray.700' boxShadow='lg' p={8}>
-                {
-                    isPDFError && (<Box mb={3} color='red.400'>
-                        {
-                            pdfError?.message || "An error occured"
-                        }
-                    </Box>
-                    )}
-                {
-                    isLinkError && (<Box mb={3} color='red.400'>
-                        {
-                            linkError?.message || "An error occured"
-                        }
-                    </Box>
-                    )}
-                <Stack spacing={4}>
-                    <FormControl id='pdfInput'>
-                        <FormLabel>Select PDFs</FormLabel>
-                        <Input type='file'
-                            value={fileInputRef.current?.value}
-                            onChange={(event) => {
-                                const file = event.target.files?.[0];
-                                if (file) {
-                                    const newFormData = new FormData();
-                                    newFormData.append("file", file);
-                                    setFormData(newFormData);
-                                }
-                            }}
-                        />
-                    </FormControl>
-                    <Button my={2} isDisabled={!formData}
-                        isLoading={isUploadingPDF}
-                        onClick={
-                            () => uploadPDF(formData)
-                        }
-                    >Upload PDF</Button>
-                    <Button my={2} isDisabled={!formData}
-                        isLoading={isUploadingLink}
-                        onClick={
-                            () => uploadLink()
-                        }
-                    >Use Google Classroom</Button>
-                </Stack>
-            </Box>
-        </>
-    )
-}
+        <> {/* React Fragment is still needed to return a single root element */}
+            <div>
+                {/* Conditional Rendering for Errors */}
+                {showPdfError && (
+                    <div className="error"> {/* Approximates color='red.400' and mb={3} */}
+                        {pdfErrorMessage}
+                    </div>
+                )}
+                {showLinkError && (
+                    <div className="error"> {/* Approximates color='red.400' and mb={3} */}
+                        {linkErrorMessage}
+                    </div>
+                )}
 
-export default PdfForm
+                {/* Form Content - Using div for layout */}
+                <div className="content"> {/* Approximates Stack spacing={4} */}
+                    {/* Input Group */}
+                        <label htmlFor='pdfInput'> {/* Approximates FormLabel */}
+                            Select PDF
+                        </label>
+                    {/* Approximates FormControl */}
+                        <input
+                            id='pdfInput' // Link label and input
+                            type='file'
+                            accept=".pdf"
+                            ref={fileInputRef}
+                            onChange={handleFileChange}
+                            style={{ /* Add basic input styling if needed */ }}
+                        />
+
+                    {/* Buttons */}
+                    <button 
+                        className="upload-btn"
+                        type="button" // Good practice for buttons not submitting a form
+                        disabled={pdfButtonIsDisabled}
+                        onClick={handleUploadPDFClick} // Approximates my={2}
+                    >
+                        {isUploadingPDF ? 'Uploading...' : 'Upload PDF'} {/* Handle loading state */}
+                    </button>
+                    <button
+                        className="gc-btn"
+                        type="button"
+                        disabled={linkButtonIsDisabled}
+                        onClick={handleUploadLinkClick}
+ // Approximates my={2}
+                    >
+                        {isUploadingLink ? 'Processing...' : 'Use Google Classroom'} {/* Handle loading state */}
+                    </button>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default PdfForm;
