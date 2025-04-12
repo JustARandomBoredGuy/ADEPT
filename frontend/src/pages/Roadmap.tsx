@@ -18,7 +18,7 @@ const Roadmap = () => {
 
     return (
         <div>
-          <div className='container'>
+          <div className='containering'>
             <div className='top-part'>
           <h1>Your Very Own Personalised Roadmap</h1>
           <div className='input'>
@@ -50,7 +50,7 @@ const Roadmap = () => {
                                 <ul>
                                     {Object.values(value.links).map((linkUrl, index) => (
                                       <li key={index}>
-                                        <a className='a' href={String(linkUrl)} target="_blank" rel="noopener noreferrer">
+                                        <a href={String(linkUrl)} target="_blank" rel="noopener noreferrer">
                                           Link {index + 1}
                                         </a>
                                       </li>
