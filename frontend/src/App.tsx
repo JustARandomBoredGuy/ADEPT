@@ -12,7 +12,6 @@ function App() {
         <Route index path='/' element={<Home />} />
         <Route index path='/inputNotes' element={<InputNotes />} />
         <Route index path='/roadmap' element={<Roadmap />} />
-
       </Route>
     </Routes>
   )

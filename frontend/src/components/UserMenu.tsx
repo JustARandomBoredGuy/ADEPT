@@ -1,38 +1,27 @@
-import { Avatar, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react"
-// import { useMutation } from "@tanstack/react-query"
-import { useNavigate } from "react-router-dom"
-import { removeToken } from "../lib/api"
-
+import { useState } from 'react';
+import './UserMenu.css'; // Import the CSS file for styling
 
 const UserMenu = () => {
-    const navigate = useNavigate()
-    // const {
-    //     mutate: logoutUser,
-    //     error
-    // } = useMutation({
-    //     mutationFn: logout,
-    //     onError: () => {
-    //         alert(error?.message || "An error occurred")
-    //     },
-    //     onSettled: () => {
-    //         queryClient.clear()
-    //         alert("Logout successful")
-    //         navigate("/login")
-    //     }
-    // })
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
-    return (
-        <Menu isLazy placement="right-start">
-            <MenuButton position='fixed' left="1.5rem" bottom='1.5rem' zIndex={10}>
-                <Avatar src='#' />
-            </MenuButton>
-            <MenuList>
-                <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
-                <MenuItem onClick={() => navigate("/inputNotes")}>Add Notes</MenuItem>
-                <MenuItem onClick={() => removeToken() }>Remove Token</MenuItem>
-            </MenuList>
-        </Menu>
-    )
-}
+  const toggleSidebar = () => {
+    setIsCollapsed((prev) => !prev);
+  };
+
+  return (
+    <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+      <button className="toggle-button" onClick={toggleSidebar}>
+        {isCollapsed ? '>' : '<'}
+      </button>
+      <ul>
+        {/* <li><a href="/login" className="menu-item"><span>🔑</span>{!isCollapsed && 'Login'}</a></li>
+        <li><a href="/notifications" className="menu-item"><span>🔔</span>{!isCollapsed && 'Notifications'}</a></li> */}
+        <li><a href="/" className="menu-item"><span>🏠</span>{!isCollapsed && 'Home'}</a></li>
+        <li><a href="/inputNotes" className="menu-item"><span>📊</span>{!isCollapsed && 'Add Notes'}</a></li>
+        <li><a href="/roadmap" className="menu-item"><span>🛣️</span>{!isCollapsed && 'Roadmap'}</a></li>
+      </ul>
+    </div>
+  );
+};
 
 export default UserMenu
