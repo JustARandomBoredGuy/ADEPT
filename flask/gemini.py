@@ -383,7 +383,7 @@ def main():
     processed_count = 0
     skipped_count = 0
     skipped_due_to_limit_count = 0 # Initialize counter for limit skips
-    api_call_delay_seconds = 3 # Increase if hitting rate limits
+    api_call_delay_seconds = 0 # Increase if hitting rate limits
 
     for i, info_string in enumerate(info_list):
         print(f"\nProcessing Item {i+1}/{len(info_list)}...")

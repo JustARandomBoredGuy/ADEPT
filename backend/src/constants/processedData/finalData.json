@@ -1,13 +1,92 @@
 {
     "0": {
         "0": {
-            "title": "Hazardous Waste Management",
-            "summary": "This section focuses on the handling, treatment, and disposal of hazardous waste materials.  It likely covers regulations, safety procedures, and environmentally sound disposal methods.",
+            "title": "AI Agents: Introduction",
+            "summary": "This document provides a brief, cautionary introduction to artificial intelligence (AI), emphasizing its widespread use and warning against its application in artwork creation.  The information is presented as a sample and should not be considered reliable.",
+            "links": {}
+        },
+        "1": {
+            "title": "Biohazard Types and Consequences",
+            "summary": "This section categorizes biohazards into infectious agents (bacteria, viruses, fungi, parasites), biological toxins (e.g., botulinum toxin, ricin), and allergens, detailing their potential health consequences ranging from mild reactions to life-threatening conditions like anaphylaxis.",
+            "links": {}
+        },
+        "2": {
+            "title": "Biohazards and their Sources",
+            "summary": "This section details various sources of biohazards, including pollen, mold spores, pet dander, genetically modified organisms (GMOs), waste products (medical and biological), vectors (disease-carrying animals), human and animal bodily fluids, and recombinant DNA technology.  It also introduces biosafety levels (BSLs) and describes BSL-1.",
+            "links": {}
+        },
+        "3": {
+            "title": "Biosafety Levels and Agents",
+            "summary": "This content describes the four biosafety levels (BSL-1 to BSL-4), detailing the risk level, example agents, and containment practices for each level.  It highlights the increasing severity of agents handled at each level, from moderate-risk to extremely dangerous and lethal agents.",
+            "links": {}
+        },
+        "4": {
+            "title": "Biosafety Cabinet Classes",
+            "summary": "This section introduces Biological Safety Cabinets (BSCs) as essential tools for protecting personnel, products, and the environment from biohazards.  It details the three main classes (I, II, III) and a Class IV environment, highlighting their distinct containment levels and applications.  Class I BSCs are described, emphasizing their protection of personnel and the environment, but not the product.",
             "links": {}
         }
     },
-    "1": {},
-    "2": {},
-    "3": {},
-    "4": {}
+    "1": {
+        "0": {
+            "title": "Cartagena Protocol and GMOs",
+            "summary": "This section details the Cartagena Protocol on Biosafety, an international treaty regulating the safe handling and transport of Living Modified Organisms (LMOs), focusing on its objectives, AIA procedure, and Biosafety Clearing-House.  It also extensively covers Genetically Modified Organisms (GMOs), categorizing them into first and second generations, and providing examples of their applications in agriculture, food production, environmental protection, pharmaceuticals, and forestry.",
+            "links": {}
+        },
+        "1": {
+            "title": "Indian GMO Regulatory Bodies",
+            "summary": "This section describes the roles and functions of three key Indian regulatory bodies overseeing GMO research and commercialization: the Review Committee on Genetic Manipulation (RCGM), the Genetic Engineering Appraisal Committee (GEAC), and the Institutional Biosafety Committee (IBSC).  It details their responsibilities in research approvals, risk assessments, safety guidelines, monitoring, and public awareness.",
+            "links": {}
+        }
+    },
+    "2": {
+        "0": {
+            "title": "FSSAI Food Safety Regulations",
+            "summary": "This document details the functions and regulations of the Food Safety and Standards Authority of India (FSSAI), including its roles in testing for hazards, quality control, adulteration checks, and consumer protection.  It outlines various license types (basic, state, central) and compliance rules such as regular testing, proper labeling, and accurate record-keeping.  The importance of FSSAI in ensuring food safety and consumer protection is emphasized.",
+            "links": {}
+        },
+        "1": {
+            "title": "Food Safety and Quality Control",
+            "summary": "This section details the role of FSSAI in standardizing food quality, preventing adulteration and fraud, promoting transparency, and facilitating international trade.  It also explains the HACCP system's seven principles for hazard analysis and control in food production, and the importance of food analysis and testing in laboratories to verify nutritional content and safety.",
+            "links": {}
+        },
+        "2": {
+            "title": "Food Safety and Quality Testing",
+            "summary": "This section details various food quality and safety tests, including allergen detection (ELISA, PCR), sensory evaluation (descriptive and consumer testing), shelf life determination (accelerated testing, microbial and chemical analysis), and quality assurance/regulatory compliance (standardized protocols, batch testing).  The importance of each test for consumer safety and product success is highlighted.",
+            "links": {}
+        }
+    },
+    "3": {
+        "0": {
+            "title": "Food Processing Techniques",
+            "summary": "This document details various physical and chemical methods in food processing.  Physical methods include thermal processing (pasteurization, sterilization, blanching), freezing/chilling, dehydration, irradiation, mechanical processing (milling, emulsification), and fermentation.  Additional physical techniques cover milling/grinding, extrusion, homogenization, filtration/centrifugation, and microwave processing. Chemical methods involve altering food's chemical composition for preservation or enhancement.",
+            "links": {}
+        },
+        "1": {
+            "title": "Food Preservation Techniques",
+            "summary": "This document details various food preservation methods, including fermentation, acidification, salting, smoking, the use of preservatives, pH control, enzymatic processing, the addition of antioxidants, hydrogenation, emulsification, sugaring, blanching, and starch modification.  Each method's description, purpose, and examples are provided, along with the overall importance of food processing for shelf-life extension, waste reduction, and other benefits.",
+            "links": {}
+        },
+        "2": {
+            "title": "Food Safety & Good Practices",
+            "summary": "This section details Good Manufacturing Practices (GMP), Good Laboratory Practices (GLP), Good Agricultural Practices (GAP), Good Hygiene Practices (GHP), and Best Aquaculture Practices (BAP).  It outlines the principles and key focus areas of each, emphasizing their roles in ensuring food safety and quality throughout the production chain, from farm to table.",
+            "links": {}
+        }
+    },
+    "4": {
+        "0": {
+            "title": "Food Additives and Classification",
+            "summary": "This section classifies and describes various food additives, including preservatives, antioxidants, colorants, flavor enhancers, sweeteners, emulsifiers, thickening agents, stabilizers, leavening agents, acidulants, and anti-caking agents, detailing their functions and examples.  It highlights the regulatory aspects ensuring consumer safety through ADI and MPL.",
+            "links": {}
+        },
+        "1": {
+            "title": "Food Additives and Regulations",
+            "summary": "This section details various food additives (umectants, gelling agents, preservatives, colorants, flavor enhancers, emulsifiers, stabilizers), their functions, and the importance of their regulation to ensure food safety and quality.  It covers acceptable daily intake (ADI), maximum permitted levels (MPL), and the roles of organizations like FAO, WHO, FSSAI, FDA, and EFSA in setting and enforcing these standards.  It also briefly touches upon food safety and bioethics.",
+            "links": {}
+        },
+        "2": {
+            "title": "Food Ethics and Research",
+            "summary": "This section explores ethical considerations in food production, including sustainability, animal welfare, food safety, security, and biotechnology.  It also details clinical research ethics, emphasizing patient autonomy, informed consent, cultural sensitivity, and conflict of interest in nutritional care and food-related research.",
+            "links": {}
+        }
+    }
 }

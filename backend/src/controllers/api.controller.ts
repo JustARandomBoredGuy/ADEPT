@@ -58,7 +58,6 @@ export const linkHandler = catchErrors(async (req, res) => {
     const parseResponse = await API.get("/getRoadmap")
     appAssert(parseResponse, INTERNAL_SERVER_ERROR, "Parsing PDF failed")
     
-    alert("Parsing successful")
     return res.status(OK).json({ message: "File parsed successfully " })
 })
 
