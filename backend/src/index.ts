@@ -5,6 +5,9 @@ import { APP_ORIGIN, FLASK_URL, NODE_ENV , PORT} from "./constants/env";
 import errorHandler from "./middleware/errorHandler";
 import { OK } from "./constants/http";
 import apiRoutes from "./routes/api.route";
+import cookieParser from "cookie-parser";
+import connectToDatabase from "./config/db";
+import authRoutes from "./routes/auth.route";
 
 const app = express();
 
@@ -17,6 +20,7 @@ app.use(
         credentials: true,
     })
 )
+app.use(cookieParser())
 
 
 app.get("/", (req, res, next) => {
@@ -26,6 +30,7 @@ app.get("/", (req, res, next) => {
 });
 
 // api routes
+app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
 
 // protected routes
@@ -36,4 +41,5 @@ app.use(errorHandler);
 
 app.listen(PORT, async () => {
     console.log(`Server running on port ${PORT} in ${NODE_ENV} environment`);
+    await connectToDatabase();
 });

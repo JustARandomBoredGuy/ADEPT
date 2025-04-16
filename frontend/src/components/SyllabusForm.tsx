@@ -1,7 +1,7 @@
 import React, { useRef, useState, ChangeEvent, MouseEventHandler } from "react"; // Import React and hooks
 import { sendImg } from "../lib/api"; // Your API function
 import { useMutation } from "@tanstack/react-query"; // Import useMutation
-import './syllabusForm.css'
+import '../styles/syllabusForm.css'
 
 // Define an interface for potential API error structure if known
 interface ApiError {

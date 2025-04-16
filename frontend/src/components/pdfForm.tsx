@@ -1,7 +1,7 @@
-import React, { useRef, useState, ChangeEvent, MouseEventHandler } from "react"; // React imports are still needed
+import { useRef, useState, ChangeEvent, MouseEventHandler } from "react"; // React imports are still needed
 import { sendLink, sendPDF } from "../lib/api";
 import { useMutation } from "@tanstack/react-query";
-import './pdfForm.css'
+import '../styles/pdfForm.css'
 
 // Define an interface for potential API error structure if known
 interface ApiError {
@@ -85,11 +85,11 @@ const PdfForm = () => {
                 {/* Form Content - Using div for layout */}
                 <div className="content"> {/* Approximates Stack spacing={4} */}
                     {/* Input Group */}
-                        <label htmlFor='pdfInput'> {/* Approximates FormLabel */}
+                        <label className='label-field' htmlFor='pdfInput'> {/* Approximates FormLabel */}
                             Select PDF
                         </label>
                     {/* Approximates FormControl */}
-                        <input
+                        <input className='input-field'
                             id='pdfInput' // Link label and input
                             type='file'
                             accept=".pdf"

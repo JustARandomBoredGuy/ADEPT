@@ -11,15 +11,15 @@
     border-radius: 2em;
 }
 
-label{
+.label-field{
     margin-bottom: 1em;
 }
 
-input {
+.input-field {
     margin-bottom: 1rem
 }
 
-button {
+.submit-button {
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 0.5em 1em;
@@ -48,7 +48,7 @@ button {
 }
 
 .gc-btn:hover {
-    border: black 2px solid; ;
+    border: black 2px solid;
 }
 
 .error {

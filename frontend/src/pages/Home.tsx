@@ -1,5 +1,5 @@
 // import { Center, Heading, Text } from "@chakra-ui/react";
-import "./Home.css"
+import "../styles/Home.css"
 
 const Home = () => {
 
@@ -13,33 +13,33 @@ const Home = () => {
                 <a href="/inputNotes" id="get-started-btn">Get Started Now</a>
                 {/* <a id="about-us-btn">About Us</a> */}
             </div>
-            <img src="../../public/home-img.png" alt="Man Holding computer" />
+            <img className="img" src="../home-img.png" alt="Man Holding computer" />
         </div>
 
         <div className="about-us"> 
           <div className="card">
-            <img src="../../public/abhyuday.jpg" alt="Photo of person" />
+            <img src="../abhyuday.jpg" alt="Photo of person" />
             <h3>Abhyuday Sharma</h3>
             <p>Prompt/AI Engineer</p>
             <p className="card-content">"Innovation lies in the idea, AI can do the rest"</p>
           </div>
 
           <div className="card">
-            <img src="../../public/arya.jpg" alt="Photo of person" />
+            <img src="../arya.jpg" alt="Photo of person" />
             <h3>Akshat Arya</h3>
             <p>Lead Python Engineer</p>
             <p className="card-content">"Success @ failure"</p>
           </div>
 
           <div className="card">
-            <img src="../../public/gupta.jpg" alt="Photo of person" />
+            <img src="../gupta.jpg" alt="Photo of person" />
             <h3>Akshat Gupta</h3>
             <p>Lead Backend Engineer</p>
             <p className="card-content">"I am late again"</p>
           </div>
 
           <div className="card">
-            <img src="../../public/amol.jpg" alt="Photo of person" />
+            <img src="../amol.jpg" alt="Photo of person" />
             <h3>Amol Vyas</h3>
             <p>Front End Engineer</p>
             <p className="card-content">"Patience is the key to success"</p>

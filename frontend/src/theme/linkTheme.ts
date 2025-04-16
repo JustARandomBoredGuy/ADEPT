@@ -1,9 +1,9 @@
-import { baseTheme, defineStyleConfig } from "@chakra-ui/react";
+// import { baseTheme, defineStyleConfig } from "@chakra-ui/react";
 
-const linkTheme = defineStyleConfig({
-  baseStyle: {
-    color: baseTheme.colors.blue[300],
-  },
-});
+// const linkTheme = defineStyleConfig({
+//   baseStyle: {
+//     color: baseTheme.colors.blue[300],
+//   },
+// });
 
-export default linkTheme;
+// export default linkTheme;

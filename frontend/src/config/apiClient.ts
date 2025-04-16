@@ -18,8 +18,11 @@ API.interceptors.response.use(
 
     // if (status === 401 && data?.errorCode === "InvalidAccessToken") {
     //     console.log("frontend caught invalid token")
+    //     await refreshAuthToken()
     //     return API(config)
     // }
+
     return Promise.reject({ status, ...data })
   }
 );
+

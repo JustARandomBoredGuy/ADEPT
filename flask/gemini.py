@@ -16,7 +16,7 @@ import googleapiclient.discovery # For YouTube API integration
 # GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 # YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY")
 GEMINI_API_KEY = "AIzaSyCKGMJmX-EZF_zCdUHPMzCxbYLnxjwo4YQ" # Replace with your actual Gemini key
-YOUTUBE_API_KEY = "AIzaSyAyUvL8zqpEvxzX8W2y0mvA92Rle2ktDOs" # Replace with your actual YouTube API key
+YOUTUBE_API_KEY = "AIzaSyBtR1iO0Qulc4MKRMZgYtEqL_nP1QeTFxI" # Replace with your actual YouTube API key
 
 if GEMINI_API_KEY == "YOUR_GEMINI_API_KEY":
     print("Error: Please replace 'YOUR_GEMINI_API_KEY' with your actual Google AI API key.")

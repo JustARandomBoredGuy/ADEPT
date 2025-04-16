@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import './Roadmap.css';
+import '../styles/Roadmap.css';
 import roadmap from "../../../backend/src/constants/processedData/finalData.json";
 
 const Roadmap = () => {
     const [selectedUnit, setSelectedUnit] = useState<string>("1");
-    const [displayData, setDisplayData] = useState<Record<string, any> | null>(null);
+    type RoadmapData = {
+        title: string;
+        summary: string;
+        links?: Record<string, string>;
+    }
+
+    const [displayData, setDisplayData] = useState<Record<string, RoadmapData> | null>(null);
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedUnit(event.target.value);
@@ -45,7 +51,7 @@ const Roadmap = () => {
                         <div className="topic-card" key={key}>
                             <h3>{value.title}</h3>
                             <p>{value.summary}</p>
-                            <p className='padding'>Here are some video links that migh tbe helpful for u to learn about the topic {value.title}</p>
+                            <p className='padding'>Here are some video links that might be helpful for u to learn about the topic {value.title}</p>
                             {value.links && Object.keys(value.links).length > 0 && (
                                 <ul>
                                     {Object.values(value.links).map((linkUrl, index) => (

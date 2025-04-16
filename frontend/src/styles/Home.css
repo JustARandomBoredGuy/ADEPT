@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
-* {
-  box-sizing: border-box;
-}
-
 .container {
   font-family: "Epilogue", "Rubik";
   width: 70%;
@@ -16,7 +12,7 @@
   min-width: 80vh;
 }
 
-img {
+.img {
   height: 100%;
   width: 100%;
   margin-left: 4rem;
@@ -109,7 +105,7 @@ img {
 }
 
 .card:hover {
-  transform: scale(1.05); /* slightly zoom in */
+  transform: scale(1.05);
 }
 
 .card img {
@@ -121,7 +117,7 @@ img {
   margin-bottom: 2rem;
 }
 
-h3 {
+.h3 {
   font-weight: 700;
   font-size: 1.5rem;
 }
