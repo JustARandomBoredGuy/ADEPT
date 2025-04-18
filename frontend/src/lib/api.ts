@@ -1,4 +1,4 @@
-import { API } from "../config/apiClient";
+import { API, TokenRefreshClient } from "../config/apiClient";
 
 
 export const sendPDF = async (files: FormData) => API.post("/api/parsePDF", files)
@@ -12,14 +12,23 @@ export const getSession = async () => API.get("/api/getToken")
 export const sendImg = async (file: FormData) => API.post("/api/parseImg", file)
 
 type LoginParams = {
-    email:string,
-    password:string
+    email: string,
+    password: string
 }
-export const login = async (data:LoginParams) => API.post("/auth/login", data)
+export const login = async (data: LoginParams) => API.post("/auth/login", data)
 
 type RegisterParams = {
-    email:string,
-    password:string,
-    confirmPassword:string
+    email: string,
+    password: string,
+    confirmPassword: string
 }
 export const register = async (data: RegisterParams) => API.post("/auth/register", data)
+
+export const getUser = async () => API.get("/user")
+
+export const refreshAuthToken = async () => TokenRefreshClient.get("/auth/refresh")
+
+export const logout = async () => {
+    removeToken()
+    API.get("/auth/logout")
+}

@@ -1,28 +1,47 @@
 import { useState } from 'react';
-import { removeToken } from '../lib/api';
+// import { removeToken } from '../lib/api';
+import { useMutation } from '@tanstack/react-query';
+import queryClient from '../config/queryClient';
+import { useNavigate } from 'react-router';
+import { logout } from '../lib/api';
 
 const UserMenu = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const navigate = useNavigate()
 
   const toggleSidebar = () => {
     setIsCollapsed((prev) => !prev);
   };
 
-  const removeHandler = () => {
-    removeToken()
-      .then(() => {
-        alert("Token Removed");
-      })
-      .catch((error) => {
-        alert("Error removing token:" + error.message);
-      });
-  };
+  // const removeHandler = () => {
+  //   removeToken()
+  //     .then(() => {
+  //       alert("Token Removed");
+  //     })
+  //     .catch((error) => {
+  //       alert("Error removing token:" + error.message);
+  //     });
+  // };
+
+  const {
+    mutate: logoutUser,
+    error
+  } = useMutation({
+    mutationFn: logout,
+    onError: () => {
+      alert(error?.message || "An error occurred")
+    },
+    onSettled: () => {
+      queryClient.clear()
+      alert("Logout successful")
+      navigate("/login")
+    }
+  })
 
   return (
     <div
-      className={`transition-all duration-500 fixed top-0 left-0 z-[5000] h-full flex flex-col bg-gray-200 text-black ${
-        isCollapsed ? 'w-[60px]' : 'w-[200px]'
-      }`}
+      className={`transition-all duration-500 fixed top-0 left-0 z-[5000] h-full flex flex-col bg-gray-200 text-black ${isCollapsed ? 'w-[60px]' : 'w-[200px]'
+        }`}
     >
       <button
         onClick={toggleSidebar}
@@ -35,9 +54,8 @@ const UserMenu = () => {
         <li className="my-4">
           <a
             href="/"
-            className={`flex items-center text-black  rounded-2xl no-underline text-base px-4 py-2 transition-all duration-300 hover:underline ${
-              isCollapsed ? 'justify-center p-2' : 'justify-start hover:bg-yellow-300'
-            }`}
+            className={`flex items-center text-black  rounded-2xl no-underline text-base px-4 py-2 transition-all duration-300 hover:underline ${isCollapsed ? 'justify-center p-2' : 'justify-start hover:bg-yellow-300'
+              }`}
           >
             <span className="mr-2">🏠</span>
             {!isCollapsed && 'Home'}
@@ -46,9 +64,8 @@ const UserMenu = () => {
         <li className="my-4">
           <a
             href="/login"
-            className={`rounded-2xl flex items-center text-black no-underline text-base px-4 py-2 transition-all duration-300 hover:underline ${
-              isCollapsed ? 'justify-center p-2' : 'justify-start hover:bg-yellow-300'
-            }`}
+            className={`rounded-2xl flex items-center text-black no-underline text-base px-4 py-2 transition-all duration-300 hover:underline ${isCollapsed ? 'justify-center p-2' : 'justify-start hover:bg-yellow-300'
+              }`}
           >
             <span className="mr-2">🔐</span>
             {!isCollapsed && 'Login or Register'}
@@ -57,9 +74,8 @@ const UserMenu = () => {
         <li className="my-4">
           <a
             href="/inputNotes"
-            className={`flex rounded-2xl items-center text-black no-underline text-base px-4 py-2 transition-all duration-300 hover:underline ${
-              isCollapsed ? 'justify-center p-2' : 'justify-start hover:bg-yellow-300'
-            }`}
+            className={`flex rounded-2xl items-center text-black no-underline text-base px-4 py-2 transition-all duration-300 hover:underline ${isCollapsed ? 'justify-center p-2' : 'justify-start hover:bg-yellow-300'
+              }`}
           >
             <span className="mr-2">📊</span>
             {!isCollapsed && 'Add Notes'}
@@ -68,9 +84,8 @@ const UserMenu = () => {
         <li className="my-4">
           <a
             href="/roadmap"
-            className={`flex rounded-2xl items-center text-black no-underline text-base px-4 py-2 transition-all duration-300 hover:underline ${
-              isCollapsed ? 'justify-center p-2' : 'justify-start hover:bg-yellow-300'
-            }`}
+            className={`flex rounded-2xl items-center text-black no-underline text-base px-4 py-2 transition-all duration-300 hover:underline ${isCollapsed ? 'justify-center p-2' : 'justify-start hover:bg-yellow-300'
+              }`}
           >
             <span className="mr-2">🛣️</span>
             {!isCollapsed && 'Display Roadmap'}
@@ -78,17 +93,16 @@ const UserMenu = () => {
         </li>
         <li className="my-4">
           <a
-            onClick={removeHandler}
-            className={`flex rounded-2xl items-center text-black no-underline text-base px-4 py-2 transition-all duration-300 hover:underline cursor-pointer ${
-              isCollapsed ? 'justify-center p-2' : 'justify-start hover:bg-yellow-300'
-            }`}
+            onClick={() => logoutUser()}
+            className={`flex rounded-2xl items-center text-black no-underline text-base px-4 py-2 transition-all duration-300 hover:underline cursor-pointer ${isCollapsed ? 'justify-center p-2' : 'justify-start hover:bg-yellow-300'
+              }`}
           >
             <span className="mr-2">🗑️</span>
             {!isCollapsed && 'Delete GAuth'}
           </a>
         </li>
       </ul>
-      
+
     </div>
   );
 };

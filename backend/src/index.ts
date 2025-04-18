@@ -8,6 +8,8 @@ import apiRoutes from "./routes/api.route";
 import cookieParser from "cookie-parser";
 import connectToDatabase from "./config/db";
 import authRoutes from "./routes/auth.route";
+import userRoutes from "./routes/user.route";
+import authenticate from "./middleware/authenticate";
 
 const app = express();
 
@@ -34,7 +36,7 @@ app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
 
 // protected routes
-// app.use('/user', authenticate, userRoutes);
+app.use('/user', authenticate, userRoutes);
 // app.use('/sessions', authenticate, sessionRoutes);
 
 app.use(errorHandler);

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { refreshAuthToken } from "../lib/api";
 
 
 const options = {
@@ -9,6 +10,11 @@ const options = {
 export const API = axios.create(options);
 
 
+export const TokenRefreshClient = axios.create(options)
+TokenRefreshClient.interceptors.response.use(
+  async (response) => response.data,
+)
+
 API.interceptors.response.use(
   async (response) => response.data,
   async (error) => {
@@ -16,11 +22,11 @@ API.interceptors.response.use(
     const { status, data } = response || {};
     console.log(status, data?.errorCode, config)
 
-    // if (status === 401 && data?.errorCode === "InvalidAccessToken") {
-    //     console.log("frontend caught invalid token")
-    //     await refreshAuthToken()
-    //     return API(config)
-    // }
+    if (status === 401 && data?.errorCode === "InvalidAccessToken") {
+        console.log("frontend caught invalid token")
+        await refreshAuthToken()
+        return API(config)
+    }
 
     return Promise.reject({ status, ...data })
   }
