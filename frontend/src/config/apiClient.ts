@@ -20,7 +20,7 @@ API.interceptors.response.use(
   async (error) => {
     const { config, response } = error;
     const { status, data } = response || {};
-    console.log(status, data?.errorCode, config)
+    console.log(status, data?.errorCode, config, error)
 
     if (status === 401 && data?.errorCode === "InvalidAccessToken") {
         console.log("frontend caught invalid token")

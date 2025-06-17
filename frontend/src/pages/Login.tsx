@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { login } from "../lib/api";
+import { blueButton, inputField, whiteButton } from "../styles/tailwindUtils";
 
 
 const Login = () => {
@@ -45,8 +46,7 @@ const Login = () => {
                             <input value={email}
                                 onChange={(event) => setEmail(event.target.value)}
                                 type="email" name="" id="email" placeholder="Enter Email Address"
-                                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 
-                                focus:bg-white focus:outline-none" autoComplete="true" autoFocus required
+                                className={inputField} autoComplete="true" autoFocus required
                                 onKeyDown={
                                     (event) => event.key === "Enter" && signIn({ email: email, password: password })
                                 } />
@@ -57,8 +57,7 @@ const Login = () => {
                             <input value={password}
                                 onChange={(event) => setPassword(event.target.value)}
                                 type="password" name="" id="password" placeholder="Enter Password" min="6"
-                                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-                focus:bg-white focus:outline-none" required
+                                className={inputField} required
                                 onKeyDown={
                                     (event) => event.key === "Enter" && signIn({ email: email, password: password })
                                 } />
@@ -66,8 +65,8 @@ const Login = () => {
 
                         {isError && <label className="block text-red-500 font-sans text-sm mt-2">Incorrect Email or password</label>}
 
-                        <button type="button" className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
-              px-4 py-3 mt-6" onClick={
+                        <button type="button" className={blueButton}
+                            onClick={
                                 () => signIn({ email: email, password: password })
                             }>
                             {isPending ? "Loading" : "Log In"}
@@ -77,7 +76,7 @@ const Login = () => {
 
                     <hr className="my-6 border-gray-300 w-full" />
 
-                    <button type="button" className="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300">
+                    <button type="button" className={whiteButton}>
                         <div className="flex items-center justify-center">
                             <span className="ml-4">
                                 Log in with Google
@@ -85,7 +84,9 @@ const Login = () => {
                         </div>
                     </button>
 
-                    <p className="mt-8">Need an account? <a href="/register" className="text-blue-500 hover:text-blue-700 font-semibold" >Create an account</a></p>
+                    <p className="mt-8">Need an account?
+                        <a href="/register" className="text-blue-500 hover:text-blue-700 font-semibold"> Create an account</a>
+                    </p>
 
                 </div>
             </div>

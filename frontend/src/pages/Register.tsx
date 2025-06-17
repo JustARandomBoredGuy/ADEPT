@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { register } from "../lib/api";
+import { blueButton, inputField } from "../styles/tailwindUtils";
 
 
 const Register = () => {
@@ -42,10 +43,9 @@ const Register = () => {
                             <input value={email}
                                 onChange={(event) => setEmail(event.target.value)}
                                 type="email" name="" id="email" placeholder="Enter Email Address"
-                                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 
-                                focus:bg-white focus:outline-none" autoComplete="true" autoFocus required
+                                className={inputField} autoComplete="true" autoFocus required
                                 onKeyDown={
-                                    (event) => event.key === "Enter" && createAccount({ email:email, password:password, confirmPassword:confirmPassword })
+                                    (event) => event.key === "Enter" && createAccount({ email: email, password: password, confirmPassword: confirmPassword })
                                 } />
                         </div>
 
@@ -54,10 +54,9 @@ const Register = () => {
                             <input value={password}
                                 onChange={(event) => setPassword(event.target.value)}
                                 type="password" name="" id="password" placeholder="Enter Password" min="6"
-                                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-                focus:bg-white focus:outline-none" required
+                                className={inputField} required
                                 onKeyDown={
-                                    (event) => event.key === "Enter" && createAccount({ email:email, password:password, confirmPassword:confirmPassword })
+                                    (event) => event.key === "Enter" && createAccount({ email: email, password: password, confirmPassword: confirmPassword })
                                 } />
                         </div>
 
@@ -66,18 +65,17 @@ const Register = () => {
                             <input value={confirmPassword}
                                 onChange={(event) => setConfirmPassword(event.target.value)}
                                 onKeyDown={
-                                    (event) => event.key === "Enter" && createAccount({ email:email, password:password, confirmPassword:confirmPassword })
+                                    (event) => event.key === "Enter" && createAccount({ email: email, password: password, confirmPassword: confirmPassword })
                                 }
                                 type="password" name="" id="confirmPassword" placeholder="Enter Password" min="6"
-                                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-                focus:bg-white focus:outline-none" required />
+                                className={inputField} required />
                         </div>
 
                         {isError && <label className="block text-red-500 font-sans text-sm mt-2">{error?.message || "An error occured"}</label>}
 
-                        <button type="button" className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
-              px-4 py-3 mt-6" onClick={
-                                () => createAccount({ email:email, password:password, confirmPassword:confirmPassword })
+                        <button type="button" className={blueButton}
+                            onClick={
+                                () => createAccount({ email: email, password: password, confirmPassword: confirmPassword })
                             }>
                             {isPending ? "Loading" : "Register"}
                         </button>
